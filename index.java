@@ -1,32 +1,75 @@
-//Put all your variables up here outside the setup or draw functions
-//What variables may you want?
-//  x, y, number of steps to take, and current steps taken
-
-int n = 300;
+//Variables
+int n = 299;
 int steps = 0;
 int x = 200;
 int y = 200;
 
 
+
+//Setup
 void setup() {
 	size(500, 500);
-  frameRate(10);
+  frameRate(100);
 }
 
-void draw() {
-	stroke(1);
-  //starts random walking from 200,200
-  rect(x, y, 10, 10);
-  
-  //Here is where you should create the new rectangles to create the illusion of 'random walking'
-  // You will need to make sure you dont draw more rectangles than the limit of steps
-  //You'll need to use the Math.random() to decide how to create randomness in your drawing of rectangles.
-  // Keep your canvas and rectangle width and height as I've given you
 
+void draw() {
+  //Draws rectangle
+	stroke(1);
+  fill(0,0,255);
+  rect(x, y, 10, 10);
  
+
+  //Movement
+  inr r = (int)(Math.random() * 4);
   
+  if (steps <= n) {
+
+  fill(x/2);
+  rect(x, y, 10, 10);
+
+  if (r == 0) {
+    fill(0,0,255);
+    x = x + 10;
+    steps = steps + 1;
+    rect(x, y, 10, 10);
+  } else if (r == 1) {
+    fill(0,0,255);
+    x = x - 10;
+    steps = steps + 1;
+    rect(x, y, 10, 10);
+  } else if (r == 2) {
+    fill(0,0,255);
+    y = y + 10;
+    steps = steps + 1;
+    rect(x, y, 10, 10);
+  } else if (r == 3) {
+    fill(0,0,255);
+    y = y - 10;
+    steps = steps + 1;
+    rect(x, y, 10, 10);
+  } else if(steps == n){
+  background(0);
+    r = 4;
+  }
+
+  if (x >= 400){
+    r = 1
+  } else if (x <= 0){
+    r = 0
+  }
+  if (y >= 400){
+    r = 3
+  } else if (y <= 0){
+    r = 2;
+  }
+
+
+  }
+
     println("drew rect at: " + x + ", " + y);
     println("Steps taken: " + steps);
+
 }
 
 
